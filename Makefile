@@ -20,9 +20,18 @@ CFLAGS += -Wno-unused-function
 # for development build with gcc
 CFLAGS += -g
 
+# comment out lines below according to whether or not lua is specifically lua5.3 or not
+USE_LUA53_SPECIFICALLY=
+
+ifeq ($(shell pkg-config --exists lua5.3 && echo 1), 1)
 # add Lua5.3
-CFLAGS += $(shell pkg-config --cflags lua5.3)
+CFLAGS += $(shell pkg-config --cflags lua5.3) -DINCLUDE_LUA53
 LFLAGS += $(shell pkg-config --libs lua5.3)
+else
+# add Lua
+CFLAGS += $(shell pkg-config --cflags lua)
+LFLAGS += $(shell pkg-config --libs lua)
+endif
 
 # add SDL2
 CFLAGS += $(shell pkg-config --cflags sdl2 SDL2_ttf)

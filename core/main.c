@@ -7,10 +7,7 @@
 #include <string.h>
 #include <time.h>
 
-#include <lua5.3/lauxlib.h>
-#include <lua5.3/lua.h>
-#include <lua5.3/lualib.h>
-
+#include "env_lua.h"
 #include "common.h"
 #include "game.h"
 #include "graphics.h"
